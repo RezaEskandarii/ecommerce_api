@@ -10,9 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping("/reza")
-    public ResponseEntity<AppUser> index(){
-        return new ResponseEntity<>(new Account(), HttpStatus.OK);
-    }
 
 }

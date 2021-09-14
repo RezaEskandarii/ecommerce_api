@@ -3,14 +3,16 @@ package entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "users")
 public class User {
 
     @Id
@@ -26,4 +28,12 @@ public class User {
     @Column(name = "last_name", nullable = false, unique = true, length = 50)
     private String lastName;
     private boolean enabled;
+
+    @ManyToOne
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 }
